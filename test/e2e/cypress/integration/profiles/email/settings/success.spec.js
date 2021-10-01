@@ -115,7 +115,7 @@ context('Email Profile', () => {
 
       it('is unable to log in with the old email', () => {
         cy.clearCookies()
-        cy.visit(APP_URL + '/auth/login')
+        cy.visit(APP_URL + '/login')
         cy.login({ email: down(email), password, expectSession: false })
       })
 

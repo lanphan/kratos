@@ -3,6 +3,7 @@ package settings
 import (
 	"context"
 	"encoding/json"
+	"github.com/ory/kratos/text"
 	"net/http"
 	"net/url"
 	"time"
@@ -177,7 +178,7 @@ func (f *Flow) Valid(s *session.Session) error {
 	}
 
 	if f.IdentityID != s.Identity.ID {
-		return errors.WithStack(herodot.ErrBadRequest.WithReasonf(
+		return errors.WithStack(herodot.ErrBadRequest.WithID(text.ErrIDInitiatedBySomeoneElse).WithReasonf(
 			"You must restart the flow because the resumable session was initiated by another person."))
 	}
 
